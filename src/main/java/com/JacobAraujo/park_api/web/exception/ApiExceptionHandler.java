@@ -1,5 +1,6 @@
 package com.JacobAraujo.park_api.web.exception;
 
+import com.JacobAraujo.park_api.exception.CpfUniqueViolationException;
 import com.JacobAraujo.park_api.exception.EntityNotFoundException;
 import com.JacobAraujo.park_api.exception.UsernameUniqueViolationException;
 import com.JacobAraujo.park_api.exception.InvalidPasswordException;
@@ -42,7 +43,7 @@ public class ApiExceptionHandler {
 
     }
 
-    @ExceptionHandler(UsernameUniqueViolationException.class)
+    @ExceptionHandler({UsernameUniqueViolationException.class, CpfUniqueViolationException.class})
     public ResponseEntity<ErrorMessage> usernameUniqueViolationException(RuntimeException ex,
                                                                         HttpServletRequest request){
         log.error("Api Error -", ex);
