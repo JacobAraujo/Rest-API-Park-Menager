@@ -1,8 +1,9 @@
 package com.JacobAraujo.park_api.web.exception;
 
-import com.JacobAraujo.park_api.exception.EntityNotFoundException;
+import com.JacobAraujo.park_api.exception.CpfUniqueViolationException;
 import com.JacobAraujo.park_api.exception.UsernameUniqueViolationException;
 import com.JacobAraujo.park_api.exception.InvalidPasswordException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -42,7 +43,7 @@ public class ApiExceptionHandler {
 
     }
 
-    @ExceptionHandler(UsernameUniqueViolationException.class)
+    @ExceptionHandler({UsernameUniqueViolationException.class, CpfUniqueViolationException.class})
     public ResponseEntity<ErrorMessage> usernameUniqueViolationException(RuntimeException ex,
                                                                         HttpServletRequest request){
         log.error("Api Error -", ex);
